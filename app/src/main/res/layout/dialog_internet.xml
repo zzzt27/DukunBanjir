@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:background="#000000">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="250dp"
+            android:layout_height="100dp"
+            android:background="@android:color/holo_red_light">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="25dp"
+                android:src="@drawable/error"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@android:color/white">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="5dp"
+                android:textColor="@android:color/background_dark"
+                android:text="No internet access"
+                android:textStyle="bold"
+                android:textSize="14dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Please check your connection"
+                android:textStyle="bold"
+                android:textSize="10dp"/>
+
+
+            <FrameLayout
+                android:id="@+id/btnExitDialogInternet"
+                android:layout_gravity="center"
+                android:layout_width="70dp"
+                android:layout_margin="15dp"
+                android:layout_height="25dp"
+                android:background="@drawable/button_corner_red">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="8dp"
+                    android:gravity="center"
+                    android:textColor="@android:color/white"
+                    android:text="close"/>
+            </FrameLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>
