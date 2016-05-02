@@ -1,11 +1,13 @@
 package paskal.zzzt.dukunbanjir.Activity;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -19,6 +21,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import org.json.JSONArray;
@@ -27,10 +30,10 @@ import org.json.JSONObject;
 
 import paskal.zzzt.dukunbanjir.R;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
 
     RequestQueue requestQueue;
-    String showUrl = "http://1303037.ti.polindra.ac.id:88/api.php/ta?transform=1";
+    String showUrl = "http://1303037.ti.polindra.ac.id:88/retrieve.php";
     private GoogleMap mMap;
 
     @Override
@@ -73,11 +76,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         Double lat          = Location.getDouble("lat");
                         //String kendaraan    = Location.getString("kendaraan");
 
-                        LatLng latLng_angkot = new LatLng(lat, lang);
+                        LatLng latLng = new LatLng(lat, lang);
 
-                        MarkerOptions marker_angkot = new MarkerOptions().position(latLng_angkot);
+                        MarkerOptions marker_angkot = new MarkerOptions().position(latLng);
                         mMap.addMarker(marker_angkot.icon(BitmapDescriptorFactory.fromResource(R.drawable.marker))
                                 .title("adsd")).hideInfoWindow();
+
+
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -115,9 +120,24 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
         RequestJSON();
 
+
+
         // Add a marker in Sydney and move the camera
         LatLng sydney = new LatLng(-6.4, 108);
         //mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(-6.4, 108), 8));
+    }
+
+    @Override
+    public boolean onMarkerClick(Marker marker) {
+        //Toast.makeText(this,marker.getTitle(), Toast.LENGTH_LONG).show();
+
+        //marker.getPosition();
+
+        Intent intent = new Intent(this, DetailActivity.class);
+        intent.putExtra("deal", marker.getPosition());
+        startActivity(intent);
+        return false;
     }
 }

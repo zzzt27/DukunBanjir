@@ -57,7 +57,7 @@ public class DetailActivity extends BaseActivity implements OnMapReadyCallback,
     private ObservableScrollView mScrollView;
     private int mParallaxImageHeight;
     private static String TAG = DetailActivity.class.getSimpleName();
-    private String urlJsonObj ="http://percobaaan.esy.es/api.php/ta/1";
+    //private String urlJsonObj ="http://percobaaan.esy.es/api.php/ta/1";
     private String jsonResponseAir;
     private String jsonResponseStatus;
     private TextView tvStatus;
@@ -94,7 +94,7 @@ public class DetailActivity extends BaseActivity implements OnMapReadyCallback,
         pDialog.setCancelable(false);
 
         //json
-        makeJsonObjectRequest();
+        //makeJsonObjectRequest();
 
 
         //map
@@ -120,7 +120,7 @@ public class DetailActivity extends BaseActivity implements OnMapReadyCallback,
                                     @Override
                                     public void run() {
                                         swipeRefreshLayout.setRefreshing(true);
-                                        makeJsonObjectRequest();
+                                        //makeJsonObjectRequest();
                                     }
                                 }
         );
@@ -130,7 +130,7 @@ public class DetailActivity extends BaseActivity implements OnMapReadyCallback,
 
 
     //fungsi parsing json
-    public void makeJsonObjectRequest() {
+   /* public void makeJsonObjectRequest() {
         //parsing json
 
         swipeRefreshLayout.setRefreshing(true);
@@ -169,9 +169,6 @@ public class DetailActivity extends BaseActivity implements OnMapReadyCallback,
 
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    /*Toast.makeText(getApplicationContext(),
-                            "Error: " + e.getMessage(),
-                            Toast.LENGTH_LONG).show();*/
 
                     final Dialog openDialog = new Dialog(DetailActivity.this, R.style.FullHeightDialog);
                     openDialog.setContentView(R.layout.dialog_json);
@@ -198,8 +195,6 @@ public class DetailActivity extends BaseActivity implements OnMapReadyCallback,
             @Override
             public void onErrorResponse(VolleyError error) {
                 VolleyLog.d(TAG, "Error: " + error.getMessage());
-                /*Toast.makeText(getApplicationContext(),
-                        error.getMessage(), Toast.LENGTH_SHORT).show();*/
 
                 if (error instanceof TimeoutError || error instanceof NoConnectionError) {
 
@@ -305,7 +300,7 @@ public class DetailActivity extends BaseActivity implements OnMapReadyCallback,
 
         // Adding request to request queue
         AppController.getInstance().addToRequestQueue(jsonObjReq);
-    }
+    }*/
 
 
 
@@ -379,7 +374,7 @@ public class DetailActivity extends BaseActivity implements OnMapReadyCallback,
     }
 
     public void onRefresh() {
-        makeJsonObjectRequest();
+        //makeJsonObjectRequest();
     }
 
 
